@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dan on 5/18/16.
  */
@@ -7,6 +9,7 @@ public class Player {
     String name;
     String weapon;
     String location;
+    ArrayList<String> items = new ArrayList<>();
 
     public void chooseName() {
         System.out.println("What is your name?");
@@ -41,6 +44,14 @@ public class Player {
         }
         else {
             throw new Exception("Invalid location");
+        }
+    }
+    public void findItem(String item) {
+        System.out.println("You found " + item + "! Pick it up? [Y/N]");
+        String answer = Main.scanner.nextLine();
+        if (answer.equalsIgnoreCase("y")) {
+            items.add(item);
+            System.out.println("You now have " + items.size() + " items.");
         }
     }
 }
