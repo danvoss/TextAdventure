@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Scanner;
 
+
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
@@ -9,8 +10,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome traveller!");
-
-
 
         player.chooseName();
         player.chooseWeapon();
@@ -21,6 +20,9 @@ public class Main {
 
         Enemy ogre = new Enemy("Ogre", 10, 10);
         player.battle(ogre);
+
+        System.out.println(player);
+        System.out.println(ogre);
 
 //        System.out.println("Type a number...");
 //        String num = scanner.nextLine();
