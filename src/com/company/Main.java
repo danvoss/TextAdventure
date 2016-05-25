@@ -1,5 +1,10 @@
 package com.company;
 
+import jodd.json.JsonSerializer;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -24,16 +29,6 @@ public class Main {
         System.out.println(player);
         System.out.println(ogre);
 
-//        System.out.println("Type a number...");
-//        String num = scanner.nextLine();
-//        int numInt = Integer.valueOf(num);
-//
-//        if (numInt < 0) {
-//            System.out.println("That's a negative number!");
-//        }
-//        else {
-//            System.out.println("That's a postitive number!");
-//        }
     }
 
     public static String nextLine() {
@@ -44,6 +39,9 @@ public class Main {
                     System.out.println(item);
                 }
             }
+            else if (line.equals("/save")) {
+                saveGame();
+            }
             else {
                 System.out.println("Command not found.");
             }
@@ -52,6 +50,21 @@ public class Main {
         }
         return line;
     }
+
+    public static void saveGame() {
+        JsonSerializer serializer = new JsonSerializer();
+        String json = serializer.include("*").serialize(player);
+
+        File f = new File("game.json");
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.write(json);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
